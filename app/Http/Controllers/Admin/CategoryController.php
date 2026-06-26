@@ -23,7 +23,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:250',
-            'dec' => 'required|string|max:500',
+            'description' => 'required|string|',
         ]);
 
         Category::create($validated);
@@ -40,7 +40,7 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:250',
-            'dec' => 'required|string|max:500',
+            'description' => 'required|string|max:500',
         ]);
 
         $category->update($validated);

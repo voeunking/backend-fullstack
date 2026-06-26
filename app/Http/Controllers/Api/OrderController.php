@@ -11,9 +11,20 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $orders = Order::where('user_id', Auth::id())
+        $orders = Order::with('user')
+            ->where('user_id', Auth::id())
             ->orderByDesc('created_at')
-            ->get();
+            ->get()
+            ->map(function ($order) {
+                $items = $order->items;
+                if (is_array($items)) {
+                    // Ensure each item has product data from backend payload if available.
+                    $order->items = $items;
+                } else {
+                    $order->items = [];
+                }
+                return $order;
+            });
 
         return response()->json([
             'success' => true,
