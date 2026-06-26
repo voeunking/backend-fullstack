@@ -50,6 +50,14 @@
                             <p class="mt-2 text-sm font-bold text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div>
+                        <label for="stock" class="block text-sm font-bold text-slate-700 mb-1">Stock</label>
+                        <input type="number" name="stock" id="stock" step="0.01" min="0" value="{{ old('stock') }}" required
+                            class="w-full rounded-2xl border-slate-300 border px-4 py-3 focus:ring-2 focus:ring-cyan-500/20 focus:border-cyan-500 @error('stock') border-red-500 @enderror">
+                        @error('stock')
+                            <p class="mt-2 text-sm font-bold text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
 
                     <div>
                         <label for="category_id" class="block text-sm font-bold text-slate-700 mb-1">Category</label>
