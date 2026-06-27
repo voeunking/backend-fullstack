@@ -42,6 +42,14 @@
                             <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                         @enderror
                     </div>
+                    <div>
+                        <label for="stock" class="block text-sm font-medium text-slate-700 mb-1">Stock</label>
+                        <input type="number" name="stock" id="stock" step="0.01" min="0" value="{{ old('stock', $product->stock) }}" required
+                            class="w-full rounded-lg border-slate-300 border px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 @error('stock') border-red-500 @enderror">
+                        @error('stock')
+                            <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                        @enderror
+                    </div>
 
                     <div>
                         <label for="category_id" class="block text-sm font-medium text-slate-700 mb-1">Category</label>

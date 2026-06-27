@@ -11,10 +11,13 @@ class AdminMiddleware
 {
     public function handle(Request $request, Closure $next): Response
     {
-        if (!Auth::check() || Auth::user()->role !== 'admin') {
+        $adminUser = $request->user();
+        if (!$adminUser || $adminUser->role !== 'admin') {
+
             if ($request->expectsJson() || $request->is('api/*')) {
                 return response()->json(['message' => 'Unauthorized access'], 403);
             }
+
 
             return redirect()->route('admin.login')->with('error', 'Unauthorized access');
         }

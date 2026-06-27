@@ -69,7 +69,8 @@
 
 
                         @forelse($users as $user)
-                            <tr class="
+                            <tr
+                                class="
                                 hover:bg-blue-50/60
                                 transition duration-300
                                 group
@@ -92,194 +93,93 @@
                                             {{ strtoupper(substr($user->name, 0, 1)) }}
 
                                         </div>
-
-
-
                                         <div>
-
                                             <p class="font-bold text-slate-800">
-
                                                 {{ $user->name }}
-
                                             </p>
-
                                             <p class="text-xs text-slate-400">
-
                                                 User Account
-
                                             </p>
-
                                         </div>
-
-
                                     </div>
-
-
                                 </td>
-
-
-
-
-
                                 <td class="px-6 py-5 text-slate-600">
 
                                     {{ $user->email }}
 
                                 </td>
-
-
-
-
-
                                 <td class="px-6 py-5">
-
-
                                     @if ($user->role === 'admin')
                                         <span
                                             class="
-px-4 py-2 rounded-full
-bg-purple-100 text-purple-700
-font-bold text-xs
-">
-
+                                                px-4 py-2 rounded-full
+                                                bg-purple-100 text-purple-700
+                                                font-bold text-xs
+                                                ">
                                             👑 Admin
-
                                         </span>
                                     @else
                                         <span
                                             class="
-px-4 py-2 rounded-full
-bg-green-100 text-green-700
-font-bold text-xs
-">
-
+                                                px-4 py-2 rounded-full
+                                                bg-green-100 text-green-700
+                                                font-bold text-xs
+                                                ">
                                             User
-
                                         </span>
                                     @endif
-
-
                                 </td>
-
-
-
-
-
-
                                 <td class="px-6 py-5 text-slate-500">
-
                                     <div class="flex items-center gap-2">
-
-
                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 
                                             <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                                                 d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7H3v12a2 2 0 002 2z" />
-
                                         </svg>
-
-
                                         {{ $user->created_at->format('M d, Y') }}
-
-
                                     </div>
-
-
                                 </td>
-
-
-
-
-
                                 <td class="px-6 py-5 text-right">
-
-
                                     <div class="flex justify-end gap-2">
-
-
                                         <a href="{{ route('admin.users.edit', $user) }}"
                                             class="
-px-4 py-2 rounded-xl
-bg-blue-100 text-blue-700
-font-bold text-sm
-hover:bg-blue-600 hover:text-white
-transition">
-
+                                                            px-4 py-2 rounded-xl
+                                                            bg-blue-100 text-blue-700
+                                                            font-bold text-sm
+                                                            hover:bg-blue-600 hover:text-white
+                                                            transition">
                                             Edit
-
                                         </a>
-
-
-
-
-
                                         <form action="{{ route('admin.users.destroy', $user) }}" method="POST"
                                             onsubmit="return confirm('Delete this user?')">
-
                                             @csrf
                                             @method('DELETE')
-
-
                                             <button
                                                 class="
-px-4 py-2 rounded-xl
-bg-red-100 text-red-700
-font-bold text-sm
-hover:bg-red-600 hover:text-white
-transition">
-
+                                                    px-4 py-2 rounded-xl
+                                                    bg-red-100 text-red-700
+                                                    font-bold text-sm
+                                                    hover:bg-red-600 hover:text-white
+                                                    transition">
                                                 Delete
-
                                             </button>
-
-
                                         </form>
-
-
-
                                     </div>
-
-
                                 </td>
-
-
                             </tr>
-
-
-
                         @empty
-
-
                             <tr>
-
                                 <td colspan="6" class="text-center py-12 text-slate-400">
-
-
                                     <div class="text-5xl mb-3">
                                         👤
                                     </div>
-
-
                                     No users found
-
-
                                 </td>
-
                             </tr>
                         @endforelse
-
-
                     </tbody>
-
-
                 </table>
-
             </div>
-
-
-
-
-
             @if ($users->hasPages())
                 <div class="px-6 py-5 border-t bg-slate-50">
 
@@ -287,13 +187,7 @@ transition">
 
                 </div>
             @endif
-
-
-
         </div>
-
-
-
     </div>
 
 @endsection
