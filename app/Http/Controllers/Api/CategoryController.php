@@ -29,9 +29,9 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(),[
-            'name'=> ' required|string|max:250',
-            'description'=>'required|string|max:500'
-
+            'name' => 'required|string|max:250',
+            'description' => 'required|string|max:500',
+            'image' => 'nullable|string|max:255'
         ]);
         if($validator->fails()){
         return response()->json([
@@ -41,6 +41,9 @@ class CategoryController extends Controller
         ], Response::HTTP_BAD_REQUEST);
         }
         $categories = Category::create($validator->validated());
+
+        // If you uploaded via admin, `image` stores relative path (e.g. categories/xxx.jpg)
+        // and frontend can access it via: /storage/{path}
         return response()->json([
             'success'=>true,
             'message'=>'The Category has been created!',
@@ -80,9 +83,10 @@ class CategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-         $validator = Validator::make($request->all(),[
-            'name'=> ' required|string|max:250',
-            'description'=>'required|string|max:500'
+        $validator = Validator::make($request->all(),[
+            'name'=> 'required|string|max:250',
+            'description'=>'required|string|max:500',
+            'image' => 'nullable|string|max:255'
 
         ]);
         if($validator->fails()){

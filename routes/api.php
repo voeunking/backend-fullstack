@@ -2,12 +2,16 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+// Public contact form submit
+Route::post('/contact/messages', [ContactController::class, 'store']);
 
 // Public auth routes
 Route::post('/register', [AuthController::class, 'register']);

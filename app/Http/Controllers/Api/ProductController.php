@@ -97,7 +97,17 @@ class ProductController extends Controller
         }
 
         $product = Product::find($id);
-        $product->update($validator->validated());
+
+        $validated = $validator->validated();
+
+        if ($request->hasFile('image')) {
+            if ($product->image) {
+                \Illuminate\Support\Facades\Storage::disk('public')->delete($product->image);
+            }
+            $validated['image'] = $request->file('image')->store('products', 'public');
+        }
+
+        $product->update($validated);
         return response()->json([
             'success' => true,
             'message' => 'Product updated successfully',
